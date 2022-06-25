@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,11 +119,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_PATH = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'static'))
+
+STATIC_URL = '/static/' # You may find this is already defined as such.
+
+STATICFILES_DIRS = (
+STATIC_PATH,
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = '/home/'
 # REDIS_HOST = 'localhost'
 # REDIS_PORT = 6379
